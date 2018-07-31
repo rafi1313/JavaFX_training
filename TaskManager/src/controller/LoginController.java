@@ -42,14 +42,12 @@ public class LoginController {
             tf_password.setText(pf_password.getText());
             tf_password.setVisible(true);
             pf_password.setVisible(false);
-//            password = tf_password.getText();
             pf_password.clear();
         } else {
             System.out.println("Odznaczony");
             pf_password.setText(tf_password.getText());
             tf_password.setVisible(false);
             pf_password.setVisible(true);
-//            password = pf_password.getText();
             tf_password.clear();
         }
     }
@@ -69,13 +67,15 @@ public class LoginController {
     private void externalLoginAction() throws SQLException, IOException {
         DBConnect db = new DBConnect();
         Connection conn = db.getCon();
-        PreparedStatement ps = conn.prepareStatement("SELECT permission, id_u FROM users where login=? AND password=?");
+        //dostęp do aktualnego okna
+       Stage currentStage =(Stage) btn_login.getScene().getWindow();
         if (cb_show.isSelected()) {
             password = tf_password.getText();
         } else {
             password = pf_password.getText();
         }
-
+        //przygotowanie zapytania do logowania
+        PreparedStatement ps = conn.prepareStatement("SELECT permission, id_u FROM users where login=? AND password=?");
         ps.setString(1, tf_login.getText());
         ps.setString(2, password);
 
@@ -92,6 +92,8 @@ public class LoginController {
         if (permission == 1) {
             System.out.println("Panel administratora");
             LoginCounter.counter = 2;
+
+            currentStage.close();
         } else if (permission == 0) {
             LoginCounter.counter = 2;
             Parent root = FXMLLoader.load(getClass().getResource("/view/userView.fxml"));
@@ -102,6 +104,7 @@ public class LoginController {
             Image icon = new Image(getClass().getResourceAsStream("../favicon.png"));
             userStage.getIcons().add(icon);
             userStage.show();
+            currentStage.close();
         } else {
             LoginCounter.countAction();
             DialogWindow dw = new DialogWindow(Alert.AlertType.ERROR,
