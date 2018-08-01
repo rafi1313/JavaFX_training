@@ -90,9 +90,16 @@ public class LoginController {
         }
 
         if (permission == 1) {
-            System.out.println("Panel administratora");
-            LoginCounter.counter = 2;
 
+            LoginCounter.counter = 2;
+            Parent root = FXMLLoader.load(getClass().getResource("/view/adminView.fxml"));
+            Scene scene = new Scene(root);
+            Stage adminStage = new Stage();
+            adminStage.setScene(scene);
+            adminStage.setTitle("Panel 1");
+            Image icon = new Image(getClass().getResourceAsStream("../favicon.png"));
+            adminStage.getIcons().add(icon);
+            adminStage.show();
             currentStage.close();
         } else if (permission == 0) {
             LoginCounter.counter = 2;

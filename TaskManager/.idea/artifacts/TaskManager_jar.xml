@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TaskManager:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TaskManager_jar</output-path>
+    <root id="archive" name="TaskManager.jar">
+      <element id="module-output" name="TaskManager" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/service/mysql-connector-java-5.1.43-bin.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

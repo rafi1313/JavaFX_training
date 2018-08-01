@@ -152,7 +152,7 @@ public class UserController {
 //            System.out.println(ps.toString());
             ps.executeUpdate();
 //            System.out.println("END");
-            conn.commit();
+//            conn.commit();
 
             DialogWindow dw = new DialogWindow(Alert.AlertType.INFORMATION,
                     "Potwierdzenie",
@@ -185,7 +185,7 @@ public class UserController {
             category_names.add(result_category.getString("course_category"));
         }
         combo_category.setItems(category_names);
-        //1. uzupełnienie dat w combobox
+        //2. uzupełnienie dat w combobox
         ps = conn.prepareStatement("SELECT DISTINCT date FROM edition");
         ResultSet result_dates = ps.executeQuery();
         while (result_dates.next()) {
