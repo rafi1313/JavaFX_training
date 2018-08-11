@@ -70,7 +70,7 @@ public class Controller {
 
     public void modifyContact(String _idToModify, String _doZmiany, String _nowaWartosc) throws SQLException {
 
-        String sqlStatement = "update kontakty set "+_doZmiany+"=? where id=?";
+        String sqlStatement = "update kontakty set " + _doZmiany + "=? where id=?";
         PreparedStatement st = dao.getCon().prepareStatement(sqlStatement);
 
         st.setString(1, _nowaWartosc);

@@ -35,6 +35,7 @@ public class LoginController {
 
     private String password;
     static int id_u = 0;
+
     @FXML
     void showPasswordAction(MouseEvent event) {
         if (cb_show.isSelected()) {
@@ -68,7 +69,7 @@ public class LoginController {
         DBConnect db = new DBConnect();
         Connection conn = db.getCon();
         //dostęp do aktualnego okna
-       Stage currentStage =(Stage) btn_login.getScene().getWindow();
+        Stage currentStage = (Stage) btn_login.getScene().getWindow();
         if (cb_show.isSelected()) {
             password = tf_password.getText();
         } else {

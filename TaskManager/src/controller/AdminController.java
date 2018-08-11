@@ -240,15 +240,15 @@ public class AdminController {
     @FXML
     void addCourseAction(MouseEvent event) throws SQLException {
 
-        if (tf_course_name.getText().trim().equals("")){
-            DialogWindow dw = new DialogWindow(Alert.AlertType.ERROR,"BŁĄD","Błąd dodawania kursu","Podaj nazwę kursu");
-        }else if (tf_course_category.getText().trim().equals("")){
-            DialogWindow dw = new DialogWindow(Alert.AlertType.ERROR,"BŁĄD","Błąd dodawania kursu","Podaj kategorię kursu");
-        }else if (ta_course_agenda.getText().trim().equals("")){
-            DialogWindow dw = new DialogWindow(Alert.AlertType.ERROR,"BŁĄD","Błąd dodawania kursu","Podaj agendę kursu");
-        }else if (dp_course_date.getValue()==null){
-            DialogWindow dw = new DialogWindow(Alert.AlertType.ERROR,"BŁĄD","Błąd dodawania kursu","Wybierz datę kursu");
-        }else {
+        if (tf_course_name.getText().trim().equals("")) {
+            DialogWindow dw = new DialogWindow(Alert.AlertType.ERROR, "BŁĄD", "Błąd dodawania kursu", "Podaj nazwę kursu");
+        } else if (tf_course_category.getText().trim().equals("")) {
+            DialogWindow dw = new DialogWindow(Alert.AlertType.ERROR, "BŁĄD", "Błąd dodawania kursu", "Podaj kategorię kursu");
+        } else if (ta_course_agenda.getText().trim().equals("")) {
+            DialogWindow dw = new DialogWindow(Alert.AlertType.ERROR, "BŁĄD", "Błąd dodawania kursu", "Podaj agendę kursu");
+        } else if (dp_course_date.getValue() == null) {
+            DialogWindow dw = new DialogWindow(Alert.AlertType.ERROR, "BŁĄD", "Błąd dodawania kursu", "Wybierz datę kursu");
+        } else {
             db = new DBConnect();
             Connection conn = db.getCon();
             ps = conn.prepareStatement("INSERT INTO course (course_name,course_agenda,course_category) values(?,?,?)");
@@ -299,30 +299,29 @@ public class AdminController {
     @FXML
     void confirmSubmissionAction(MouseEvent event) throws SQLException {
         int status = tbl_submission.getSelectionModel().getSelectedItem().getConfirm();
-        try{
-        if (status==0){
-            status=1;
-        }else {
-            status =0;
-        }
-        db = new DBConnect();
-        Connection conn = db.getCon();
-        ps = conn.prepareStatement("UPDATE submission SET confirm = ? WHERE (\n" +
-                "users_id_u=(select id_u from users where login =?)\n" +
-                " and\n" +
-                " course_id_c=(select id_c from course full join edition on (id_c = course_id_c) where course_name =? and date=?)\n" +
-                " and date = (select date from course full join edition on (id_c = course_id_c) where course_name =? and date=?)\n" +
-                " );");
-        ps.setInt(1, status);
-        ps.setString(2, tbl_submission.getSelectionModel().getSelectedItem().getLogin());
-        ps.setString(3, tbl_submission.getSelectionModel().getSelectedItem().getCourse_name());
-        ps.setString(4, tbl_submission.getSelectionModel().getSelectedItem().getDate());
-        ps.setString(5, tbl_submission.getSelectionModel().getSelectedItem().getCourse_name());
-        ps.setString(6, tbl_submission.getSelectionModel().getSelectedItem().getDate());
-        ps.executeUpdate();
-        globalSubmissionSelect();
-    }
-        catch(NullPointerException e){
+        try {
+            if (status == 0) {
+                status = 1;
+            } else {
+                status = 0;
+            }
+            db = new DBConnect();
+            Connection conn = db.getCon();
+            ps = conn.prepareStatement("UPDATE submission SET confirm = ? WHERE (\n" +
+                    "users_id_u=(select id_u from users where login =?)\n" +
+                    " and\n" +
+                    " course_id_c=(select id_c from course full join edition on (id_c = course_id_c) where course_name =? and date=?)\n" +
+                    " and date = (select date from course full join edition on (id_c = course_id_c) where course_name =? and date=?)\n" +
+                    " );");
+            ps.setInt(1, status);
+            ps.setString(2, tbl_submission.getSelectionModel().getSelectedItem().getLogin());
+            ps.setString(3, tbl_submission.getSelectionModel().getSelectedItem().getCourse_name());
+            ps.setString(4, tbl_submission.getSelectionModel().getSelectedItem().getDate());
+            ps.setString(5, tbl_submission.getSelectionModel().getSelectedItem().getCourse_name());
+            ps.setString(6, tbl_submission.getSelectionModel().getSelectedItem().getDate());
+            ps.executeUpdate();
+            globalSubmissionSelect();
+        } catch (NullPointerException e) {
             DialogWindow dw = new DialogWindow(Alert.AlertType.ERROR,
                     "BŁĄD",
                     "Błąd danych",
@@ -333,15 +332,15 @@ public class AdminController {
     @FXML
     void btnActivation(MouseEvent event) {
         try {
-            if (tbl_submission.getSelectionModel().getSelectedItem().getConfirm()==0){
+            if (tbl_submission.getSelectionModel().getSelectedItem().getConfirm() == 0) {
                 btn_confirm_submission.setVisible(true);
                 btn_confirm_submission.setStyle("-fx-background-color:green");
                 btn_confirm_submission.setText("potwierdź");
-            }else if (tbl_submission.getSelectionModel().getSelectedItem().getConfirm()==1){
+            } else if (tbl_submission.getSelectionModel().getSelectedItem().getConfirm() == 1) {
                 btn_confirm_submission.setVisible(true);
                 btn_confirm_submission.setStyle("-fx-background-color:red");
                 btn_confirm_submission.setText("odrzuć");
-            }else {
+            } else {
                 btn_confirm_submission.setVisible(false);
             }
         } catch (NullPointerException e) {
@@ -352,7 +351,6 @@ public class AdminController {
         }
 
     }
-
 
 
     private void globalSubmissionSelect() throws SQLException {
@@ -379,6 +377,7 @@ public class AdminController {
         tbl_submission.setItems(submissionList);
 
     }
+
     public void initialize() throws SQLException {
         globalSelect();
         globalCourseSelect();

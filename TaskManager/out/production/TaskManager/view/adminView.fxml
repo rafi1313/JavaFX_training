@@ -15,125 +15,155 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminController">
-   <children>
-      <Label alignment="CENTER" layoutY="25.0" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="800.0" text="PANEL ADMINISTRATORA" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Label>
-      <MenuBar maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="800.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="Plik">
-               <items>
-              <MenuItem fx:id="m_logout" mnemonicParsing="false" onAction="#menuLogout" text="wyloguj" />
-               </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Pomoc">
-            <items>
-                  <MenuItem fx:id="m_instruction" mnemonicParsing="false" onAction="#menuInstruction" text="O autorach" />
-              <MenuItem fx:id="m_authors" mnemonicParsing="false" onAction="#menuAuthors" text="Instrukcja korzystania" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <TabPane layoutX="1.0" layoutY="76.0" prefHeight="411.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="użytkownicy">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="268.0" prefWidth="413.0">
-                     <children>
-                        <TableView fx:id="tbl_users" layoutX="15.0" layoutY="33.0" prefHeight="223.0" prefWidth="764.0">
-                           <columns>
-                              <TableColumn fx:id="col_users_name" minWidth="100.0" prefWidth="148.0" text="imię" />
-                              <TableColumn fx:id="col_users_lastname" prefWidth="218.0" text="nazwisko" />
-                              <TableColumn fx:id="col_users_login" prefWidth="183.0" text="login" />
-                              <TableColumn fx:id="col_users_password" prefWidth="185.0" text="hasło" />
-                           </columns>
-                        </TableView>
-                        <Button fx:id="btn_delete_user" layoutX="14.0" layoutY="293.0" mnemonicParsing="false" onMouseClicked="#deleteUserAction" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: red;" text="usuń użytkownika" textFill="#eeff00">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="btn_change_password" layoutX="266.0" layoutY="294.0" mnemonicParsing="false" onMouseClicked="#changePasswordAction" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: yellow;" text="zmień hasło" textFill="RED">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Button>
-                        <TextField fx:id="tf_new_password1" layoutX="526.0" layoutY="268.0" prefHeight="25.0" prefWidth="200.0" promptText="nowe hasło" visible="false" />
-                        <TextField fx:id="tf_new_password2" layoutX="526.0" layoutY="306.0" prefHeight="25.0" prefWidth="200.0" promptText="powtórz hasło" visible="false" />
-                        <Button fx:id="btn_confirm_new_password" layoutX="526.0" layoutY="346.0" mnemonicParsing="false" onMouseClicked="#confirmPasswordAction" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: green;" text="zatwierdź" textFill="WHITE" visible="false">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Button>
-                        <Label layoutX="30.0" layoutY="2.0" text="UŻYTKOWNICY">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-            <Tab text="kursy">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="373.0" prefWidth="800.0">
-                     <children>
-                        <TableView fx:id="tbl_course" layoutX="15.0" layoutY="33.0" prefHeight="223.0" prefWidth="764.0">
-                           <columns>
-                              <TableColumn fx:id="col_course_name" minWidth="100.0" prefWidth="148.0" text="nazwa kursu" />
-                              <TableColumn fx:id="col_course_agenda" prefWidth="218.0" text="agenda" />
-                              <TableColumn fx:id="col_course_category" prefWidth="183.0" text="kategoria" />
-                              <TableColumn fx:id="col_course_date" prefWidth="209.0" text="termin" />
-                           </columns>
-                        </TableView>
-                        <Button fx:id="btn_insert_course" layoutX="15.0" layoutY="267.0" mnemonicParsing="false" onMouseClicked="#addCourseAction" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: blue;" text="dodaj nowy kurs" textFill="#eeff00">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Button>
-                        <Label layoutX="30.0" layoutY="2.0" text="kursy">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <TextArea fx:id="ta_course_agenda" layoutX="490.0" layoutY="267.0" prefHeight="108.0" prefWidth="289.0" promptText="agenda kursu" />
-                        <TextField fx:id="tf_course_name" layoutX="240.0" layoutY="267.0" prefWidth="230.0" promptText="nazwa kursu" />
-                        <TextField fx:id="tf_course_category" layoutX="240.0" layoutY="303.0" prefWidth="230.0" promptText="kategoria kursu" />
-                        <DatePicker fx:id="dp_course_date" layoutX="240.0" layoutY="340.0" prefHeight="25.0" prefWidth="230.0" promptText="wybierz datę kursu" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-            <Tab text="zapisy">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="373.0" prefWidth="800.0">
-                     <children>
-                        <TableView fx:id="tbl_submission" layoutX="15.0" layoutY="33.0" onMouseClicked="#btnActivation" prefHeight="294.0" prefWidth="764.0">
-                           <columns>
-                              <TableColumn fx:id="col_sub_login" minWidth="100.0" prefWidth="148.0" text="login użytkownika" />
-                              <TableColumn fx:id="col_sub_course" prefWidth="218.0" text="nazwa kursu" />
-                              <TableColumn fx:id="col_sub_date" prefWidth="183.0" text="data" />
-                              <TableColumn fx:id="col_sub_confirm" prefWidth="209.0" text="potwierdzenie" />
-                           </columns>
-                        </TableView>
-                        <Label layoutX="30.0" layoutY="2.0" text="kursy">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="btn_confirm_submission" layoutX="297.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#confirmSubmissionAction" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: green;" text="potwierdź" textFill="#eeff00" visible="false">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
+            prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.AdminController">
+    <children>
+        <Label alignment="CENTER" layoutY="25.0" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="800.0"
+               text="PANEL ADMINISTRATORA" textAlignment="CENTER">
+            <font>
+                <Font name="System Bold" size="24.0"/>
+            </font>
+        </Label>
+        <MenuBar maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="800.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="Plik">
+                    <items>
+                        <MenuItem fx:id="m_logout" mnemonicParsing="false" onAction="#menuLogout" text="wyloguj"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Pomoc">
+                    <items>
+                        <MenuItem fx:id="m_instruction" mnemonicParsing="false" onAction="#menuInstruction"
+                                  text="O autorach"/>
+                        <MenuItem fx:id="m_authors" mnemonicParsing="false" onAction="#menuAuthors"
+                                  text="Instrukcja korzystania"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <TabPane layoutX="1.0" layoutY="76.0" prefHeight="411.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="użytkownicy">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="268.0" prefWidth="413.0">
+                            <children>
+                                <TableView fx:id="tbl_users" layoutX="15.0" layoutY="33.0" prefHeight="223.0"
+                                           prefWidth="764.0">
+                                    <columns>
+                                        <TableColumn fx:id="col_users_name" minWidth="100.0" prefWidth="148.0"
+                                                     text="imię"/>
+                                        <TableColumn fx:id="col_users_lastname" prefWidth="218.0" text="nazwisko"/>
+                                        <TableColumn fx:id="col_users_login" prefWidth="183.0" text="login"/>
+                                        <TableColumn fx:id="col_users_password" prefWidth="185.0" text="hasło"/>
+                                    </columns>
+                                </TableView>
+                                <Button fx:id="btn_delete_user" layoutX="14.0" layoutY="293.0" mnemonicParsing="false"
+                                        onMouseClicked="#deleteUserAction" prefHeight="25.0" prefWidth="200.0"
+                                        style="-fx-background-color: red;" text="usuń użytkownika" textFill="#eeff00">
+                                    <font>
+                                        <Font name="System Bold" size="12.0"/>
+                                    </font>
+                                </Button>
+                                <Button fx:id="btn_change_password" layoutX="266.0" layoutY="294.0"
+                                        mnemonicParsing="false" onMouseClicked="#changePasswordAction" prefHeight="25.0"
+                                        prefWidth="200.0" style="-fx-background-color: yellow;" text="zmień hasło"
+                                        textFill="RED">
+                                    <font>
+                                        <Font name="System Bold" size="12.0"/>
+                                    </font>
+                                </Button>
+                                <TextField fx:id="tf_new_password1" layoutX="526.0" layoutY="268.0" prefHeight="25.0"
+                                           prefWidth="200.0" promptText="nowe hasło" visible="false"/>
+                                <TextField fx:id="tf_new_password2" layoutX="526.0" layoutY="306.0" prefHeight="25.0"
+                                           prefWidth="200.0" promptText="powtórz hasło" visible="false"/>
+                                <Button fx:id="btn_confirm_new_password" layoutX="526.0" layoutY="346.0"
+                                        mnemonicParsing="false" onMouseClicked="#confirmPasswordAction"
+                                        prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: green;"
+                                        text="zatwierdź" textFill="WHITE" visible="false">
+                                    <font>
+                                        <Font name="System Bold" size="12.0"/>
+                                    </font>
+                                </Button>
+                                <Label layoutX="30.0" layoutY="2.0" text="UŻYTKOWNICY">
+                                    <font>
+                                        <Font name="System Bold" size="16.0"/>
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="kursy">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="373.0" prefWidth="800.0">
+                            <children>
+                                <TableView fx:id="tbl_course" layoutX="15.0" layoutY="33.0" prefHeight="223.0"
+                                           prefWidth="764.0">
+                                    <columns>
+                                        <TableColumn fx:id="col_course_name" minWidth="100.0" prefWidth="148.0"
+                                                     text="nazwa kursu"/>
+                                        <TableColumn fx:id="col_course_agenda" prefWidth="218.0" text="agenda"/>
+                                        <TableColumn fx:id="col_course_category" prefWidth="183.0" text="kategoria"/>
+                                        <TableColumn fx:id="col_course_date" prefWidth="209.0" text="termin"/>
+                                    </columns>
+                                </TableView>
+                                <Button fx:id="btn_insert_course" layoutX="15.0" layoutY="267.0" mnemonicParsing="false"
+                                        onMouseClicked="#addCourseAction" prefHeight="25.0" prefWidth="200.0"
+                                        style="-fx-background-color: blue;" text="dodaj nowy kurs" textFill="#eeff00">
+                                    <font>
+                                        <Font name="System Bold" size="12.0"/>
+                                    </font>
+                                </Button>
+                                <Label layoutX="30.0" layoutY="2.0" text="kursy">
+                                    <font>
+                                        <Font name="System Bold" size="16.0"/>
+                                    </font>
+                                </Label>
+                                <TextArea fx:id="ta_course_agenda" layoutX="490.0" layoutY="267.0" prefHeight="108.0"
+                                          prefWidth="289.0" promptText="agenda kursu"/>
+                                <TextField fx:id="tf_course_name" layoutX="240.0" layoutY="267.0" prefWidth="230.0"
+                                           promptText="nazwa kursu"/>
+                                <TextField fx:id="tf_course_category" layoutX="240.0" layoutY="303.0" prefWidth="230.0"
+                                           promptText="kategoria kursu"/>
+                                <DatePicker fx:id="dp_course_date" layoutX="240.0" layoutY="340.0" prefHeight="25.0"
+                                            prefWidth="230.0" promptText="wybierz datę kursu"/>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="zapisy">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="373.0" prefWidth="800.0">
+                            <children>
+                                <TableView fx:id="tbl_submission" layoutX="15.0" layoutY="33.0"
+                                           onMouseClicked="#btnActivation" prefHeight="294.0" prefWidth="764.0">
+                                    <columns>
+                                        <TableColumn fx:id="col_sub_login" minWidth="100.0" prefWidth="148.0"
+                                                     text="login użytkownika"/>
+                                        <TableColumn fx:id="col_sub_course" prefWidth="218.0" text="nazwa kursu"/>
+                                        <TableColumn fx:id="col_sub_date" prefWidth="183.0" text="data"/>
+                                        <TableColumn fx:id="col_sub_confirm" prefWidth="209.0" text="potwierdzenie"/>
+                                    </columns>
+                                </TableView>
+                                <Label layoutX="30.0" layoutY="2.0" text="kursy">
+                                    <font>
+                                        <Font name="System Bold" size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Button fx:id="btn_confirm_submission" layoutX="297.0" layoutY="343.0"
+                                        mnemonicParsing="false" onMouseClicked="#confirmSubmissionAction"
+                                        prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: green;"
+                                        text="potwierdź" textFill="#eeff00" visible="false">
+                                    <font>
+                                        <Font name="System Bold" size="12.0"/>
+                                    </font>
+                                </Button>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
 </AnchorPane>

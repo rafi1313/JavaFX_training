@@ -161,7 +161,7 @@ public class UserController {
 
             //wygenerowanie zapisu do pliku
             String fileName = new SimpleDateFormat("yyyy-MM-dd_HH_mm'.txt'").format(new Timestamp(System.currentTimeMillis()));
-            PrintWriter plik = new PrintWriter(new FileOutputStream("X:\\BeD kurs\\JavaFX\\JavaFX_training\\TaskManager\\src\\output\\file"+fileName));
+            PrintWriter plik = new PrintWriter(new FileOutputStream("X:\\BeD kurs\\JavaFX\\JavaFX_training\\TaskManager\\src\\output\\file" + fileName));
             String zapis = new StringBuilder().append(LoginController.id_u).append(";").append(combo_name.getValue()).append(";").append(feed).append(";").append(fv_decision).append(";").append(ta_fv.getText()).append("\n").toString();
             plik.write(zapis);
             plik.close();
